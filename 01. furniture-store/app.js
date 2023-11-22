@@ -6,6 +6,7 @@ function solve() {
     let descriptionInputElement = document.getElementById('description');
     let priceInputElement = document.getElementById('price');
     let addBtnElement = document.getElementById('add');
+    let tableBuyBtnElement;
 
     addBtnElement.addEventListener('click', (e) => {
         e.preventDefault();
@@ -69,17 +70,16 @@ function solve() {
                     hiddenInfoElement.style.display = 'none';
                 }
             });
-
-            tableBuyBtnElement.addEventListener('click', (e) => {
-                let totalPriceElement = document.querySelector('.total-price');
-                let currPrice = Number((e.target.parentNode.parentNode.querySelector('td:nth-of-type(2)')).textContent);
-                e.target.parentNode.parentNode.remove();
-                let extraDescriptionElements = document.querySelectorAll('.hide');
-                for (el of extraDescriptionElements) {
-                    el.remove();
-                }
-                totalPriceElement.textContent = (Number(totalPriceElement.textContent) + currPrice).toFixed(2);
-            });
         }
+    });
+    tableBuyBtnElement.addEventListener('click', (e) => {
+        let totalPriceElement = document.querySelector('.total-price');
+        let currPrice = Number((e.target.parentNode.parentNode.querySelector('td:nth-of-type(2)')).textContent);
+        e.target.parentNode.parentNode.remove();
+        let extraDescriptionElements = document.querySelectorAll('.hide');
+        for (el of extraDescriptionElements) {
+            el.remove();
+        }
+        totalPriceElement.textContent = (Number(totalPriceElement.textContent) + currPrice).toFixed(2);
     });
 }
